@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence System - Command Center</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#111827',
+                        accentBlue: '#3b82f6',
+                        accentGreen: '#10b981',
+                        accentRed: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-darkBg text-gray-100 font-sans min-h-screen flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-cardBg border-r border-gray-800 flex flex-col justify-between hidden md:flex">
+        <div>
+            <!-- Logo / Brand -->
+            <div class="h-16 flex items-center px-6 border-b border-gray-800">
+                <i class="fa-solid fa-shield-halved text-accentBlue text-2xl mr-3"></i>
+                <span class="text-lg font-bold tracking-wider">INTEL-OPS</span>
+            </div>
+            <!-- Navigation Links -->
+            <nav class="p-4 space-y-2">
+                <a href="#" class="flex items-center px-4 py-3 rounded-lg bg-accentBlue/10 text-accentBlue font-medium transition">
+                    <i class="fa-solid fa-chart-line w-6"></i> Dashboard
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-gray-800/50 text-gray-400 hover:text-gray-200 transition">
+                    <i class="fa-solid fa-globe w-6"></i> Data Sources
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-gray-800/50 text-gray-400 hover:text-gray-200 transition">
+                    <i class="fa-solid fa-radar w-6"></i> Surveillance
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-gray-800/50 text-gray-400 hover:text-gray-200 transition">
+                    <i class="fa-solid fa-triangle-exclamation w-6"></i> Threats
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-gray-800/50 text-gray-400 hover:text-gray-200 transition">
+                    <i class="fa-solid fa-gear w-6"></i> Settings
+                </a>
+            </nav>
+        </div>
+        <!-- User Status -->
+        <div class="p-4 border-t border-gray-800 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-accentBlue/20 flex items-center justify-center text-accentBlue font-bold">AI</div>
+                <div>
+                    <p class="text-sm font-semibold">Operator</p>
+                    <p class="text-xs text-accentGreen flex items-center"><span class="w-2 h-2 rounded-full bg-accentGreen inline-block mr-1 animate-pulse"></span> Active</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col min-h-screen">
+        <!-- Topbar -->
+        <header class="h-16 bg-cardBg border-b border-gray-800 flex items-center justify-between px-6">
+            <div class="flex items-center space-x-4">
+                <button class="md:hidden text-gray-400 hover:text-white"><i class="fa-solid fa-bars text-xl"></i></button>
+                <h1 class="text-xl font-semibold tracking-wide">Live Intelligence Dashboard</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full border border-gray-700 text-gray-300">
+                    <i class="fa-solid fa-clock mr-1 text-accentBlue"></i> <span id="utc-time">UTC</span>
+                </span>
+                <div class="relative">
+                    <button class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 hover:text-white transition">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content Grid -->
+        <main class="p-6 flex-1 space-y-6">
+            <!-- Stats Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-cardBg border border-gray-800 p-5 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-sm text-gray-400">Total Scans</p>
+                            <h3 class="text-2xl font-bold mt-1">24,850</h3>
+                        </div>
+                        <div class="p-3 bg-accentBlue/10 text-accentBlue rounded-lg"><i class="fa-solid fa-network-wired"></i></div>
+                    </div>
+                    <p class="text-xs text-accentGreen mt-3 flex items-center"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +12% from last hour</p>
+                </div>
+                <div class="bg-cardBg border border-gray-800 p-5 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-sm text-gray-400">Active Threats</p>
+                            <h3 class="text-2xl font-bold mt-1 text-accentRed">3</h3>
+                        </div>
+                        <div class="p-3 bg-accentRed/10 text-accentRed rounded-lg"><i class="fa-solid fa-bug"></i></div>
+                    </div>
+                    <p class="text-xs text-accentRed mt-3 flex items-center"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Immediate action required</p>
+                </div>
+                <div class="bg-cardBg border border-gray-800 p-5 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-sm text-gray-400">Data Processed</p>
+                            <h3 class="text-2xl font-bold mt-1">1.4 TB</h3>
+                        </div>
+                        <div class="p-3 bg-purple-500/10 text-purple-400 rounded-lg"><i class="fa-solid fa-database"></i></div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-3">Stable Pipeline</p>
+                </div>
+                <div class="bg-cardBg border border-gray-800 p-5 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-sm text-gray-400">System Status</p>
+                            <h3 class="text-2xl font-bold mt-1 text-accentGreen">Optimal</h3>
+                        </div>
+                        <div class="p-3 bg-accentGreen/10 text-accentGreen rounded-lg"><i class="fa-solid fa-server"></i></div>
+                    </div>
+                    <p class="text-xs text-accentGreen mt-3">All nodes operational</p>
+                </div>
+            </div>
+
+            <!-- Interactive Terminal / Log Stream & Quick Action -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Live Feed / Logs -->
+                <div class="lg:col-span-2 bg-cardBg border border-gray-800 rounded-xl p-5 flex flex-col h-80">
+                    <div class="flex items-center justify-between pb-4 border-b border-gray-800">
+                        <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-300">Live Intel Stream</h3>
+                        <span class="w-3 h-3 rounded-full bg-accentGreen animate-ping"></span>
+                    </div>
+                    <div class="flex-1 overflow-y-auto font-mono text-xs space-y-2 mt-3 text-gray-400" id="log-stream">
+                        <p class="text-accentBlue">[SYSTEM] Initialized secure socket connection...</p>
+                        <p>[INFO] Target nodes verified successfully.</p>
+                        <p class="text-accentGreen">[SUCCESS] Database synchronized with remote node.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Control / Search Panel -->
+                <div class="bg-cardBg border border-gray-800 rounded-xl p-5 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">Target Query</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Target IP / Domain / Keyword</label>
+                                <input type="text" id="target-input" placeholder="e.g., target.domain.com" class="w-full bg-darkBg border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-accentBlue">
+                            </div>
+                            <button onclick="runScan()" class="w-full bg-accentBlue hover:bg-blue-600 text-white py-2.5 rounded-lg text-sm font-semibold transition shadow-lg shadow-blue-500/20">
+                                <i class="fa-solid fa-magnifying-glass mr-2"></i> Execute Analysis
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-darkBg p-3 rounded-lg border border-gray-800 text-xs text-gray-400" id="scan-result-box">
+                        Status: Waiting for input query...
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript for Live Clock and Simulating Intel Logs -->
+    <script>
+        // Clock Update
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('utc-time').innerText = now.toUTCString().slice(17, 25) + ' UTC';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Simulate Live Logs
+        const logs = [
+            "[INFO] Intercepted handshake packet from external node.",
+            "[WARN] High traffic spike detected on port 443.",
+            "[SUCCESS] Threat signature analysis completed with 98% accuracy.",
+            "[INFO] Scraping OSINT targets..."
+        ];
+
+        setInterval(() => {
+            const logStream = document.getElementById('log-stream');
+            const randomLog = logs[Math.floor(Math.random() * logs.length)];
+            const timeStr = new Date().toTimeString().slice(0, 8);
+            const p = document.createElement('p');
+            p.innerText = `[${timeStr}] ${randomLog}`;
+            logStream.appendChild(p);
+            logStream.scrollTop = logStream.scrollHeight;
+        }, 4000);
+
+        // Simulation of Scan Function
+        function runScan() {
+            const val = document.getElementById('target-input').value;
+            const resBox = document.getElementById('scan-result-box');
+            if(!val) {
+                resBox.innerHTML = '<span class="text-accentRed">Error: Target cannot be empty!</span>';
+                return;
+            }
+            resBox.innerHTML = `<span class="text-accentBlue animate-pulse">Scanning target: ${val}...</span>`;
+            setTimeout(() => {
+                resBox.innerHTML = `<span class="text-accentGreen">Target [${val}] analyzed. 0 Critical Vulnerabilities found. Status: Secure.</span>`;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
